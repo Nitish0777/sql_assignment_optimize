@@ -7,25 +7,25 @@ const PieChartComponent = ({ executedQuery }) => {
     (q) => q.query === executedQuery
   )?.data;
 
-  const colors = ["#4f46e5", "#10b981", "#f59e0b"]; 
+  const colors = ["#4f46e5", "#10b981", "#f59e0b"];
 
-  const chartData =
+  const chartData = queryData?.slice(0, 3).map((product, index) => ({
+    title: product.productName || `ID: ${product.productID}`,
+    value: product.unitsInStock,
+    color: colors[index % colors.length],
+  }));
+
+  const isValidData =
     queryData &&
     queryData.every(
       (product) =>
         product.productID !== undefined && product.unitsInStock !== undefined
-    )
-      ? queryData.slice(0, 3).map((product, index) => ({
-          title: product.productName || `ID: ${product.productID}`,
-          value: product.unitsInStock,
-          color: colors[index % colors.length],
-        }))
-      : null;
+    );
 
   return (
     <div style={{ maxWidth: "400px", margin: "0 auto" }}>
       <h4>Product Stock Distribution</h4>
-      {chartData ? (
+      {isValidData && chartData?.length ? (
         <PieChart
           data={chartData}
           style={{ height: "300px" }}

@@ -22,24 +22,18 @@ const QueryEditor = ({
     onQueryChange(debouncedQuery);
   }, [debouncedQuery, onQueryChange]);
 
-  const handleInputChange = (value) => {
-    setQuery(value);
-  };
+  const handleInputChange = (value) => setQuery(value);
 
   const handleAutocomplete = (query) => {
     setQuery(query);
     onQueryChange(query);
   };
 
-  const handleExecute = () => {
-    onExecuteQuery(query);
-  };
-
   return (
     <div className="query-editor">
       <div className="editor-header">
         <h2>SQL Editor</h2>
-        <button className="execute-btn" onClick={handleExecute}>
+        <button className="execute-btn" onClick={() => onExecuteQuery(query)}>
           <img
             src={run}
             alt="Run Query"
@@ -55,36 +49,31 @@ const QueryEditor = ({
           value={query}
           extensions={[sql()]}
           theme={oneDark}
-          onChange={(value) => handleInputChange(value)}
+          onChange={handleInputChange}
           placeholder="Write your SQL query here..."
           className="query-textarea"
         />
-        <div className="autocomplete">
-          {predefinedQueries
-            .filter(
-              (q) =>
-                q.toLowerCase().includes(query.toLowerCase()) && q !== query
-            )
-            .map((q, index) => (
-              <div
-                key={index}
-                className="autocomplete-item"
-                onClick={() => handleAutocomplete(q)}
-                style={{
-                  padding: "8px",
-                  borderBottom: "1px solid #ddd",
-                  cursor: "pointer",
-                  backgroundColor: "#fff",
-                }}
-                onMouseEnter={(e) =>
-                  (e.target.style.backgroundColor = "#f0f0f0")
-                }
-                onMouseLeave={(e) => (e.target.style.backgroundColor = "#fff")}
-              >
-                {q}
-              </div>
-            ))}
-        </div>
+        {predefinedQueries
+          .filter(
+            (q) => q.toLowerCase().includes(query.toLowerCase()) && q !== query
+          )
+          .map((q, index) => (
+            <div
+              key={index}
+              className="autocomplete-item"
+              onClick={() => handleAutocomplete(q)}
+              style={{
+                padding: "8px",
+                borderBottom: "1px solid #ddd",
+                cursor: "pointer",
+                backgroundColor: "#fff",
+              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#f0f0f0")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#fff")}
+            >
+              {q}
+            </div>
+          ))}
       </div>
     </div>
   );

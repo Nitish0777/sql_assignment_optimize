@@ -34,16 +34,13 @@ const QueryHistory = ({
         ))}
       </select>
 
-      <button
-        className="show-all-products-button styled-button"
-        onClick={onShowAllProducts}
-      >
+      <button className="styled-button" onClick={onShowAllProducts}>
         Show All Products
       </button>
 
       {showPieChart && executedQuery && (
         <div className="pie-chart-container">
-          <PieChartComponent executedQuery={executedQuery} />{" "}
+          <PieChartComponent executedQuery={executedQuery} />
         </div>
       )}
     </div>

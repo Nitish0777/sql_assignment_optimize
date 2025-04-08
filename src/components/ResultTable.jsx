@@ -1,13 +1,9 @@
 import { json2csv } from "json-2-csv";
 
 const ResultTable = ({ data, loading = false }) => {
-  if (loading) {
-    return <div className="loading">Executing query...</div>;
-  }
+  if (loading) return <div className="loading">Executing query...</div>;
 
-  if (!data.length) {
-    return <div className="no-data">No results to display</div>;
-  }
+  if (!data.length) return <div className="no-data">No results to display</div>;
 
   const columns = Object.keys(data[0]);
 
@@ -18,9 +14,8 @@ const ResultTable = ({ data, loading = false }) => {
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
       link.download = "query_results.csv";
-      document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href); 
     } catch (error) {
       console.error("Error generating CSV:", error);
     }
