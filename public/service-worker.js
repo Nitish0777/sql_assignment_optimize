@@ -1,16 +1,17 @@
 const CACHE_NAME = "atlan-sql-editor-cache-v1";
-const urlsToCache = [
-  "/",
-  "/index.html",
-  "/src/App.jsx",
-  "/src/index.css",
-];
+const urlsToCache = ["/", "/index.html", "/src/App.jsx", "/src/index.css"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log("Opened cache");
-      return cache.addAll(urlsToCache);
+      return Promise.all(
+        urlsToCache.map((url) =>
+          cache.add(url).catch((error) => {
+            console.error(`Failed to cache ${url}:`, error);
+          })
+        )
+      );
     })
   );
 });
