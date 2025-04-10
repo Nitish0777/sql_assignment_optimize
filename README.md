@@ -1,10 +1,11 @@
-# React + Vite  SQL Editor
+# React + Vite SQL Editor
 
 ## 📚 Overview
 
 The React + Vite SQL Editor is a web-based application designed to execute SQL queries and display the results in an intuitive and user-friendly interface. This application provides a robust SQL editor with features like query execution, autocomplete suggestions, and data export capabilities. Built using ReactJS and optimized for performance, the editor ensures a seamless experience for users.
 
 ## Architecture
+
 ![image](https://github.com/user-attachments/assets/0f6d7843-b687-46f5-ad9c-97fc79d4f644)
 
 ## 👨‍💻 Live Demo
@@ -16,7 +17,9 @@ The React + Vite SQL Editor is a web-based application designed to execute SQL q
 Try out the website : [React + Vite SQL Editor](https://nitish-sql-queries-frontend.vercel.app/)
 
 ## ⚙️ Dependencies
+
 The project leverages the following key dependencies:
+
 - **@codemirror/lang-sql**
 - **@codemirror/theme-one-dark**
 - **react-minimal-pie-chart**
@@ -30,7 +33,6 @@ The project leverages the following key dependencies:
 :white_check_mark: Users can download the data in CSV Format in just one click.\
 :white_check_mark: Visualize query results using a pie chart for better data analysis and insights. This feature is implemented using the react-minimal-pie-chart library.
 
-
 ## ✍️ Predefined SQL Queries
 
 - `SELECT * FROM products;`
@@ -41,6 +43,7 @@ The project leverages the following key dependencies:
 - `SELECT categoryID, COUNT(*) AS product_count FROM products GROUP BY categoryID;`
 
 ## ⏱ Page Load Time
+
 ![image](https://github.com/user-attachments/assets/69e3de80-3efe-4b7f-a05d-e76cfbc45b43)
 
 Page Load time of this website in desktop is in the range of 0.4 s to 0.7s.
@@ -52,13 +55,22 @@ Laptop performance view
 ![image](https://github.com/user-attachments/assets/f4460f11-a66e-41d7-8441-9081d64b8739)
 
 ## Everything for Reference: Include all relevant materials such as the architecture diagram, ER diagram, explanation document (PDF), and video walkthrough.
-(https://drive.google.com/drive/folders/1Urz7LD3Z31Jy4pR_p5wqw4KJQZz9ECvZ)
 
+(https://drive.google.com/drive/folders/1Urz7LD3Z31Jy4pR_p5wqw4KJQZz9ECvZ)
 
 ## 🪜 Steps I took to optimize the page load time
 
-- Used Lighthouse DevTools to identify performance issues and implemented actionable suggestions.
-- Deployed the application on Vercel to leverage its Edge Network for faster load times and optimized delivery.
+- Used **Lighthouse DevTools** to identify performance issues and implemented actionable suggestions.
+- Deployed the application on **Vercel** to leverage its **Edge Network** for faster load times and optimized delivery.
+- **Lazy Loading**: Implemented lazy loading for components like `Home` using `React.lazy` and `Suspense` to reduce the initial bundle size.
+- **Code Splitting**: Ensured that only the required code is loaded for each route or feature.
+- **Service Worker**: Added a service worker to cache assets and enable offline support, reducing network requests for static resources.
+- **Minification**: Leveraged Vite's built-in minification to reduce the size of JavaScript and CSS files.
+- **Debouncing**: Used a custom `useDebouncedValue` hook to reduce unnecessary re-renders and improve performance in the SQL editor.
+- **Optimized Images**: Compressed and optimized images to reduce their size without compromising quality.
+- **Predefined Queries**: Cached predefined SQL queries to avoid redundant computations.
+- **Efficient State Management**: Used `useMemo` and `useState` effectively to minimize unnecessary re-renders.
+- **CSS Optimization**: Reduced unused CSS and used variables for consistent theming.
 
 ## Available Scripts
 
@@ -75,6 +87,6 @@ Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
 The page will reload if you make edits.
 
-
 ## 🚀 Project Output
+
 ![image](https://github.com/user-attachments/assets/573d34b4-60ca-47b6-9fb1-f121158e46be)
